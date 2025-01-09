@@ -26,8 +26,8 @@ This repository contains a **Streamlit** application (`app.py`) that:
 
 1. **Clone** or **download** this repository:
    ```bash
-   git clone https://github.com/YourUsername/your-repo-name.git
-   cd your-repo-name
+   https://github.com/NadirAliOfficial/Stock-Price-Prediction
+   cd Stock-Price-Prediction
    ```
 
 2. **Create and activate** a virtual environment (recommended):
@@ -87,7 +87,7 @@ This repository contains a **Streamlit** application (`app.py`) that:
 ## Project Structure
 
 ```
-your-repo-name/
+Stock-Price-Prediction/
 ├── app.py                  # Main Streamlit application
 ├── lstm_stock_model.h5     # (Optional) Pre-trained LSTM model
 ├── requirements.txt        # Python dependencies
