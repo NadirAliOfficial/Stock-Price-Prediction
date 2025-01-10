@@ -134,11 +134,6 @@ Contributions, suggestions, or bug reports are welcome! Feel free to:
 
 ---
 
-## License
-
-You can include a license of your choice here (e.g., MIT, Apache 2.0) or declare **All Rights Reserved** if you prefer.
-
----
 
 ## Contact
 
