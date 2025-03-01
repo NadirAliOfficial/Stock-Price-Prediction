@@ -26,4 +26,3 @@ python predict.py --ticker AAPL --days 30
 ## License
 MIT
 <!-- updated: 2025-12-21-r01 -->
-
