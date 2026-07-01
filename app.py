@@ -74,7 +74,7 @@ def load_trained_model():
 if st.sidebar.button("Predict Future Prices"):
     try:
         model = load_trained_model()
-        
+
         scaler = MinMaxScaler()
         features = ['Close', 'SMA_50', 'SMA_200', 'RSI']
         scaled_data = scaler.fit_transform(data[features])
@@ -86,7 +86,7 @@ if st.sidebar.button("Predict Future Prices"):
         def recursive_forecast(model, last_time_steps, scaler, forecast_steps, feature_count):
             predictions_inv = []
             current_input = last_time_steps.copy()
-            
+
             for _ in range(forecast_steps):
                 pred = model.predict(current_input)
                 pred_value = pred[0, 0]
@@ -96,19 +96,19 @@ if st.sidebar.button("Predict Future Prices"):
                 predictions_inv.append(pred_inv[0])
                 new_step = np.concatenate(([pred_value], last_known)).reshape(1, 1, feature_count)
                 current_input = np.concatenate((current_input[:, 1:, :], new_step), axis=1)
-            
+
             return predictions_inv
 
         forecasted_prices = recursive_forecast(model, last_time_steps, scaler, forecast_steps, scaled_data.shape[1])
         forecasted_prices = np.array(forecasted_prices)
-        
+
         future_dates = pd.date_range(data.index[-1] + pd.Timedelta(days=1), periods=forecast_steps)
         future_df = pd.DataFrame({'Date': future_dates, 'Predicted Close': forecasted_prices})
         future_df.set_index('Date', inplace=True)
-        
+
         st.write("### 📅 Predicted Prices")
         st.dataframe(future_df)
-        
+
         st.write("### 📊 Forecast Plot")
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.plot(data.index, data['Close'], label='Historical Close Price')
@@ -134,7 +134,7 @@ else:
     st.write("### 📅 Highlighted Period Plot")
     highlight_start = st.sidebar.date_input("Highlight Start Date", datetime.date(2024, 12, 1))
     highlight_end = st.sidebar.date_input("Highlight End Date", datetime.date(2025, 1, 12))
-    
+
     # Ensure date inputs are within the dataset's date range
     highlight_start = pd.Timestamp(highlight_start, tz=data.index.tz)
     highlight_end = pd.Timestamp(highlight_end, tz=data.index.tz)
@@ -169,10 +169,10 @@ import streamlit as st
 # About Section
 st.header("About")
 st.write("""
-I am **Nadir Ali Khan**, a student of the **PITP Certified Python Course** at IBA Sukkur 
-and also enrolled in the **Certified Data Science Course**. Through these courses, I am 
-honing my Python skills and diving deeper into data science, building projects that 
-showcase my learning. This project reflects my progress and the knowledge I’ve gained 
+I am **Nadir Ali Khan**, a student of the **PITP Certified Python Course** at IBA Sukkur
+and also enrolled in the **Certified Data Science Course**. Through these courses, I am
+honing my Python skills and diving deeper into data science, building projects that
+showcase my learning. This project reflects my progress and the knowledge I’ve gained
 so far. Thank you for exploring my work!
 """)
 
@@ -202,16 +202,16 @@ st.header("Client Reviews")
 st.subheader("Suhas (United States 🇺🇸)")
 st.write("**Rating:** ⭐⭐⭐⭐⭐")
 st.write("""
-> *Great work! Nadir is very passionate about what he does, and very patient.  
+> *Great work! Nadir is very passionate about what he does, and very patient.
   Will definitely work again in future — already have 3 new projects in queue.*
 """)
 
 st.subheader("Selvan (Malaysia 🇲🇾)")
 st.write("**Rating:** ⭐⭐⭐⭐⭐")
 st.write("""
-> *Nadir is an excellent and very intelligent programmer.  
-  He made a crypto sniping bot that works flawlessly.  
-  If you need any bot-related program, look no further; Nadir is the guy!  
+> *Nadir is an excellent and very intelligent programmer.
+  He made a crypto sniping bot that works flawlessly.
+  If you need any bot-related program, look no further; Nadir is the guy!
   A+++++ Highly recommended.*
 """)
 
